@@ -1,15 +1,22 @@
+/**
+ * Esta classe representa uma célula no contexto do Jogo da Vida.
+ */
 public class Celula {
-    private boolean viva;
 
+    /**
+     * Cria uma instância de célula com o estado de vida especificado.
+     */
+    private final boolean viva;
+
+    /**
+     * Verifica se a célula está viva.
+     *
+     */
     public Celula(boolean viva) {
         this.viva = viva;
     }
 
     public boolean estaViva() {
         return viva;
-    }
-
-    public void setViva(boolean viva) {
-        this.viva = viva;
     }
 }

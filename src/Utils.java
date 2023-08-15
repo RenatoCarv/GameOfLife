@@ -1,21 +1,22 @@
-import java.util.Random;
+/**
+ * Classe de utilitários com métodos auxiliares para verificação de valores inteiros.
+ */
 public class Utils {
-    public static boolean ehInteiroValido(String valor) {
+    /**
+     * Verifica se uma string contém um valor inteiro válido.
+     *
+     * @param valor A string que se deseja verificar.
+     * @return true se a string contiver um valor inteiro válido, false caso contrário.
+     */
+    static boolean ehInteiroValido(String valor) {
         for (char c : valor.toCharArray()) {
-            if (!Character.isDigit(c)) {
+            if (c < '0' || c > '9') {
                 return false;
             }
         }
         return true;
     }
-
-    public static String gerarPopulacaoAleatoria(int tamanho) {
-        StringBuilder populacaoAleatoria = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < tamanho; i++) {
-            populacaoAleatoria.append(random.nextInt(2));
-        }
-        return populacaoAleatoria.toString();
-    }
 }
+
+
 

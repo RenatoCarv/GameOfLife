@@ -1,10 +1,19 @@
 import java.util.Random;
-
+/**
+ * Esta classe representa uma grade retangular composta por células do Jogo da Vida.
+ */
 public class Grade {
     private Celula[][] grade;
     private final int linhas;
     private final int colunas;
 
+    /**
+     * Cria uma nova instância da classe Grade com as dimensões especificadas e população inicial fornecida.
+     *
+     * @param linhas     O número de linhas da grade.
+     * @param colunas    O número de colunas da grade.
+     * @param populacao  A representação da população inicial da grade (quando passamos valores via CLI).
+     */
     public Grade(int linhas, int colunas, String populacao) {
         this.linhas = linhas;
         this.colunas = colunas;
@@ -12,6 +21,12 @@ public class Grade {
         inicializarGrade(populacao);
     }
 
+    /**
+     * Cria uma nova instância da classe Grade com as dimensões especificadas e população inicial aleatória.
+     *
+     * @param linhas  O número de linhas da grade.
+     * @param colunas O número de colunas da grade.
+     */
     public Grade(int linhas, int colunas) {
         this.linhas = linhas;
         this.colunas = colunas;
@@ -19,51 +34,56 @@ public class Grade {
         inicializarGradeAleatoria();
     }
 
+    /**
+     * Inicializa a grade com base na representação de população fornecida via CLI.
+     *
+     * @param populacao A representação da população inicial da grade (quando passamos valores via CLI).
+     */
+
     private void inicializarGrade(String populacao) {
         String[] linhasPopulacao = populacao.split("#");
+
         for (int i = 0; i < linhas; i++) {
             String linhaAtual = i < linhasPopulacao.length ? linhasPopulacao[i] : "";
-            if (linhaAtual.isEmpty()) {
-                linhaAtual = "0".repeat(colunas);
-            } else if (linhaAtual.length() < colunas) {
-                linhaAtual = linhaAtual + "0".repeat(colunas - linhaAtual.length());
-            }
 
             for (int j = 0; j < colunas; j++) {
-                char estadoCelula = linhaAtual.charAt(j);
+                char estadoCelula = (j < linhaAtual.length()) ? linhaAtual.charAt(j) : '0';
                 grade[i][j] = new Celula(estadoCelula == '1');
             }
         }
     }
 
+    /**
+     * Inicializa a grade com células aleatórias vivas ou mortas.
+     */
     private void inicializarGradeAleatoria() {
+        Random random = new Random();
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
-                grade[i][j] = new Celula(Math.random() < 0.5);
+                grade[i][j] = new Celula(random.nextBoolean());
             }
         }
     }
 
-    private String gerarPopulacaoAleatoria(int tamanho) {
-        StringBuilder populacaoAleatoria = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < tamanho; i++) {
-            populacaoAleatoria.append(random.nextInt(2));
-        }
-        return populacaoAleatoria.toString();
-    }
-
-    public void imprimirGrade() {
-        System.out.println("Nova Grade:");
+    /**
+     * Imprime o estado atual da grade.
+     *
+     * @param geracao O número da geração atual.
+     */
+    public void imprimirGrade(int geracao) {
+        System.out.println("Geração " + geracao + ":");
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
-                System.out.print(grade[i][j].estaViva() ? "⭓" : "⭔");
+                System.out.print(grade[i][j].estaViva() ? "■ " : "□ ");
             }
             System.out.println();
         }
         System.out.println();
     }
 
+    /**
+     * Evolui a grade para a próxima geração de acordo com as regras do Jogo da Vida.
+     */
     public void evoluirGrade() {
         Celula[][] novaGrade = new Celula[linhas][colunas];
 
@@ -80,6 +100,14 @@ public class Grade {
 
         grade = novaGrade;
     }
+
+    /**
+     * Conta o número de células vizinhas vivas para uma determinada célula.
+     *
+     * @param x A posição x da célula na grade.
+     * @param y A posição y da célula na grade.
+     * @return O número de células vizinhas vivas.
+     */
     private int contarVizinhosVivos(int x, int y) {
         int contadorVivos = 0;
         for (int i = -1; i <= 1; i++) {
