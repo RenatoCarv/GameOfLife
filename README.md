@@ -13,9 +13,12 @@ No código fiz algumas validações de parâmetros e os mesmos devem ser passado
 se preferir randomizar sua população de células, não passe parâmetros, o código irá gerar para você.
 
 
+
 PASSANDO OS PARAMETROS DA GRADE E DEIXANDO A POPULAÇÃO EM BRANCO.
 ![Print parametros](https://github.com/RenatoCarv/Projeto-Jogo-Java/assets/106440297/6fb75665-45b7-4e7a-8202-56dacb3709bc)
-GRADE IMPRESSA SEM O VALOR DO PARÂMETRO DA POPULAÇÃO, OU SEJA, RANDOMIZADA.
+
+
+RESULTADO DAS 3 PRIMEIRAS GERAÇÕES SEM A PASSAGEM DO PARÂMETRO DE POPULAÇÃO
 ![Print grades gol](https://github.com/RenatoCarv/Projeto-Jogo-Java/assets/106440297/d68ea95c-facf-4350-aa49-e9950bc5b920)
 
 
