@@ -2,9 +2,9 @@
 
 <b>O jogo é baseado em 4 regras, sendo elas:<b/> 
 
-Qualquer célula viva com menos de dois vizinhos vivos morre de solidão.
-Qualquer célula viva com mais de três vizinhos vivos morre de superpopulação.
-Qualquer célula com exatamente três vizinhos vivos se torna uma célula viva.
+Qualquer célula viva com menos de dois vizinhos vivos morre de solidão. <br>
+Qualquer célula viva com mais de três vizinhos vivos morre de superpopulação.<br>
+Qualquer célula com exatamente três vizinhos vivos se torna uma célula viva.<br>
 Qualquer célula com dois vizinhos vivos continua no mesmo estado para a próxima geração.
 
 A partir das regras são criadas matrizes com células vivas e mortas a cada geração. 
